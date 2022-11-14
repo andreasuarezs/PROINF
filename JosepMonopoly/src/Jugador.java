@@ -56,15 +56,6 @@ public class Jugador {
 	{
 		return nombre;
 	}
-	
-	/**
-	 * Metodo que modifica el nombre del jugador
-	 * @param nombre Nuevo nombre del jugador
-	 */
-	public void setNombre(String nombre) 
-	{
-		this.nombre = nombre;
-	}
 
 	/**
 	 * Metodo que retorna la cantidad de dinero del jugador
@@ -90,6 +81,6 @@ public class Jugador {
 	 */
 	public String toString() 
 	{
-		return "id: " + id + ", nombre: " + nombre + ", dinero: " + dinero;
+		return "nombre: " + nombre + ", dinero: " + dinero;
 	}
 }
