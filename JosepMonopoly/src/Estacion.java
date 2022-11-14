@@ -1,5 +1,5 @@
 /**
- * Clase Calle
+ * Clase Estacion
  * @author Josep Molet y Andrea Suarez
  *
  */
@@ -120,6 +120,3 @@ public class Estacion extends Propiedad {
 	}
 	
 }
-	
-	
-	

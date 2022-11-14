@@ -1,5 +1,5 @@
 /**
- * Clase Calle
+ * Clase Companyia
  * @author Josep Molet y Andrea Suarez
  *
  */
@@ -68,4 +68,3 @@ public class Companyia extends Propiedad {
 	}
 	
 }
-
