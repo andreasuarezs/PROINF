@@ -50,9 +50,107 @@ public class Calle extends Propiedad {
 		this.alquilerHotel = alquilerHotel;
 		this.estado = 0;
 	}
-	
-	//AQUI
-	
-	
 
+	/**
+	 * Metodo que retorna el costo de una casa en esta calle
+	 * @return El costo de colocar una casa
+	 */
+	public int getCostoCasa() 
+	{
+		return costoCasa;
+	}
+
+	/**
+	 * Metodo que retorna el costo de un hotel en esta calle
+	 * @return El costo de colocar un hotel
+	 */
+	public int getCostoHotel() 
+	{
+		return costoHotel;
+	}
+
+	/**
+	 * Metodo que retorna el valor a pagar por alquiler
+	 * @return El valor a pagar
+	 */
+	public int getAlquiler() 
+	{
+		return alquiler;
+	}
+
+	/**
+	 * Metodo que retorna el valor a pagar por alquiler con una casa
+	 * @return El valor a pagar con una casa
+	 */
+	public int getAlquiler1Casa() 
+	{
+		return alquiler1Casa;
+	}
+
+	/**
+	 * Metodo que retorna el valor a pagar por alquiler con dos casas
+	 * @return El valor a pagar con dos casas
+	 */
+	public int getAlquiler2Casa()
+	{
+		return alquiler2Casa;
+	}
+
+	/**
+	 * Metodo que retorna el valor a pagar por alquiler con tres casas
+	 * @return El valor a pagar con tres casas
+	 */
+	public int getAlquiler3Casa() 
+	{
+		return alquiler3Casa;
+	}
+
+	/**
+	 * Metodo que retorna el valor a pagar por alquiler con cuatro casas
+	 * @return El valor a pagar con cuatro casas
+	 */
+	public int getAlquiler4Casa() 
+	{
+		return alquiler4Casa;
+	}
+
+	/**
+	 * Metodo que retorna el valor a pagar por alquiler con un hotel
+	 * @return El valor a pagar con un hotel
+	 */
+	public int getAlquilerHotel() 
+	{
+		return alquilerHotel;
+	}
+
+	/**
+	 * Metodo que retorna el estado de la calle (0-5)
+	 * @return El estado de la calle
+	 */
+	public int getEstado() 
+	{
+		return estado;
+	}
+
+	/**
+	 * Metodo que modifica el estado de la calle
+	 * @param estado Nuevo estado de la calle (0-5)
+	 */
+	public void setEstado(int estado) 
+	{
+		this.estado = estado;
+	}
+
+	@Override
+	/**
+	 * Metodo que muestra la informacion de la calle
+	 */
+	public String toString() 
+	{
+		return super.toString() + ", costoCasa: " + costoCasa + ", costoHotel: " + costoHotel + 
+				", alquiler: " + alquiler + ", alquiler1Casa: " + alquiler1Casa + 
+				", alquiler2Casa: " + alquiler2Casa + ", alquiler3Casa: "
+				+ alquiler3Casa + ", alquiler4Casa: " + alquiler4Casa + ", alquilerHotel: " 
+				+ alquilerHotel + ", estado: " + estado + "]";
+	}
 }
