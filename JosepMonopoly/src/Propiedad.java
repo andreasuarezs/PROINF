@@ -3,10 +3,8 @@
  * @author Josep Molet y Andrea Suarez
  *
  */
-public class Propiedad {
+public class Propiedad extends Casilla {
 
-	private int id;
-	private static int sigId = 1; //atributo estatico que asigna el siguiente id a la propiedad
 	private String nombre;
 	private Jugador duenyo;
 	private int precio;
@@ -26,28 +24,10 @@ public class Propiedad {
 	 */
 	public Propiedad(String nombre, int precio)
 	{
-		setId();
+		super();
 		this.nombre = nombre;
 		this.precio = precio;
 		this.duenyo = null;
-	}
-	
-	/**
-	 * Metodo que retorna el id de la propiedad
-	 * @return Id de la propiedad
-	 */
-	public int getId()
-	{
-		return id;
-	}
-	
-	/**
-	 * Metodo que asigna el id de la propiedad
-	 */
-	private void setId()
-	{
-		this.id = sigId;
-		sigId++;
 	}
 	
 	/**
