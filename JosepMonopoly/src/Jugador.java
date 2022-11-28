@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Clase Jugador
  * @author Josep Molet y Andrea Suarez
@@ -9,6 +11,7 @@ public class Jugador {
 	private static int sigId = 1;   //atributo estatico que asigna el siguiente id al jugador
 	private String nombre;
 	private int dinero;
+	private static final int CANTDINERO = 1500;
 	
 	/**
 	 * Constructor por defecto
@@ -83,4 +86,16 @@ public class Jugador {
 	{
 		return "nombre: " + nombre + ", dinero: " + dinero;
 	}
+	
+	public static Jugador nuevoJugador()
+	{
+		String nombre;
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Ingresa el nombre del jugador: ");
+		nombre = sc.nextLine();
+		
+		return new Jugador(nombre, CANTDINERO);
+	}
 }
+
