@@ -71,7 +71,7 @@ public class Partida {
 					break;
 				case 2:
 					inicializar();
-					//jugar();
+					jugar();
 					break;
 				case 3:
 					//llamara a funcion que cargue partida desde archivo
@@ -86,7 +86,7 @@ public class Partida {
 			
 		}while(opcion != 0);
 	}
-	
+
 	public void agregarJugadores()
 	{
 		int cantJugadores;
@@ -143,10 +143,75 @@ public class Partida {
 			System.out.println("Error cargando archivo suerte.txt!");
 		}
 		
-		//Llenar el tablero con las casillas
-		tablero.getCasillas()[0] = new Especial("salida");
+		//Llenar las casillas del tablero
+		ruta = System.getProperty("user.dir") + "\\" + "casillas.txt";
+		archivo = new File(ruta);
 		
-		//AQUI - llenar tablero con las casillas correspondientes
+		try
+		{
+			BufferedReader bfr = new BufferedReader(new FileReader(archivo));
+			int cont = 1;
+			
+			while((linea = bfr.readLine()) != null)
+			{
+				//casillas unica
+				if(cont == 1 || cont == 5 || cont == 11 || cont == 21 || cont == 31 || cont == 39)
+				{
+					Unica casillaUnica = new Unica(linea);
+					tablero.getCasillas()[cont-1] = casillaUnica;
+				}
+				else if(cont == 3 || cont == 18 || cont == 34)  //comunidad
+				{
+					Comunidad casillaComunidad = new Comunidad(linea);
+					tablero.getCasillas()[cont-1] = casillaComunidad;
+				}
+				else if(cont == 8 || cont == 23 || cont == 37)  //suerte
+				{
+					Suerte casillaSuerte = new Suerte(linea);
+					tablero.getCasillas()[cont-1] = casillaSuerte;
+				}
+				else if(cont == 13 || cont == 29)  //casillas servicios
+				{
+					String[] data = linea.split(" "); 
+					CompaniaPublica casillaCompania = new CompaniaPublica(data[0], Integer.parseInt(data[1]));
+					tablero.getCasillas()[cont-1] = casillaCompania;
+				}
+				else if(cont == 6 || cont == 16 || cont == 26 || cont == 36) //casillas estaciones
+				{
+					String[] data = linea.split(" ");
+					Estacion casillaEstacion = new Estacion(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]), Integer.parseInt(data[4]), Integer.parseInt(data[5]));
+					tablero.getCasillas()[cont-1] = casillaEstacion;
+				}
+				else //calles
+				{
+					String[] data = linea.split(" ");
+					Calle casillaPropiedad = new Calle(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]), Integer.parseInt(data[4]), Integer.parseInt(data[5]), Integer.parseInt(data[6]), Integer.parseInt(data[7]), Integer.parseInt(data[8]), Integer.parseInt(data[9]));
+					tablero.getCasillas()[cont-1] = casillaPropiedad;
+				}
+				
+				cont++;
+			}
+
+			System.out.println("Partida inicializada...!");
+		}
+		catch(IOException e)
+		{
+			System.out.println("Error cargando archivo casillas.txt!");
+		}
+	}
+	
+	private void barajear(ArrayList<Especial> cartas)
+	{
+		//AQUI
+	}
+	
+	/**
+	 * Metodo con la logica del juego
+	 */
+	private void jugar() 
+	{
+		System.out.println("\n\n:::INICIA EL JUEGO:::\n\n");		
+		
 	}
 
 	/**
