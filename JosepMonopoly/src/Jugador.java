@@ -11,6 +11,7 @@ public class Jugador {
 	private static int sigId = 1;   //atributo estatico que asigna el siguiente id al jugador
 	private String nombre;
 	private int dinero;
+	private int posicion;
 	private static final int CANTDINERO = 1500;
 	
 	/**
@@ -18,7 +19,7 @@ public class Jugador {
 	 */
 	public Jugador() 
 	{
-		this("", 0);
+		this("", 0, 39);
 	}
 	
 	/**
@@ -26,11 +27,12 @@ public class Jugador {
 	 * @param nombre Nombre del jugador
 	 * @param dinero Cantidad de dinero que tiene el jugador
 	 */
-	public Jugador(String nombre, int dinero) 
+	public Jugador(String nombre, int dinero, int posicion) 
 	{
 		setId();
 		this.nombre = nombre;
 		this.dinero = dinero;
+		this.posicion = posicion;
 	}
 
 	/**
@@ -77,6 +79,15 @@ public class Jugador {
 	{
 		this.dinero = dinero;
 	}
+	
+	public int getPosicion() 
+	{
+		return posicion;
+	}
+	public void setPosicion(int posicion) 
+	{
+		this.posicion = posicion;
+	}
 
 	@Override
 	/**
@@ -95,7 +106,24 @@ public class Jugador {
 		System.out.println("Ingresa el nombre del jugador: ");
 		nombre = sc.nextLine();
 		
-		return new Jugador(nombre, CANTDINERO);
+		return new Jugador(nombre, CANTDINERO, 39);
+	}
+	
+	public void lanzarDados()
+	{
+		int dado1 = (int) Math.floor(Math.random() * 6) + 1;
+		int dado2 = (int) Math.floor(Math.random() * 6) + 1;
+		
+		System.out.println("\nPrimer dado: " + dado1);
+		System.out.println("Segundo dado: " + dado2 + "\n");
+		
+		int movimiento = dado1 + dado2;
+		
+		System.out.println("Avanza " + movimiento + " casillas\n");
+		
+		if((posicion + movimiento) <= 39)
+			posicion += movimiento;
+		else
+			posicion = (posicion + movimiento) - 40;
 	}
 }
-
