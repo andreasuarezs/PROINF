@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -105,6 +106,7 @@ public class Partida {
 		for(int i = 0; i < cantJugadores; i++)
 			jugadores.add(Jugador.nuevoJugador());
 		
+		Collections.shuffle(jugadores);
 		System.out.println("Jugadores agregados!");
 	}
 	
@@ -121,6 +123,8 @@ public class Partida {
 			
 			while((linea = bfr.readLine()) != null)
 				listaComunidad.add(new Comunidad(linea));		
+			
+			Collections.shuffle(listaComunidad);
 		}
 		catch(IOException e)
 		{
@@ -137,6 +141,8 @@ public class Partida {
 			
 			while((linea = bfr.readLine()) != null)
 				listaSuerte.add(new Suerte(linea));	
+			
+			Collections.shuffle(listaSuerte);
 		}
 		catch(IOException e)
 		{
@@ -200,18 +206,122 @@ public class Partida {
 		}
 	}
 	
-	private void barajear(ArrayList<Especial> cartas)
-	{
-		//AQUI
-	}
-	
 	/**
 	 * Metodo con la logica del juego
 	 */
 	private void jugar() 
 	{
-		System.out.println("\n\n:::INICIA EL JUEGO:::\n\n");		
+		System.out.println("\n\n:::INICIA EL JUEGO:::\n\n");	
+		Scanner sc = new Scanner(System.in);
 		
+		int turno = 0;
+		
+		while(cantidadEnJuego() >= 2)
+		{
+			Jugador jugador = jugadores.get(turno);
+			
+			System.out.println("\n:::TURNO DEL JUGADOR " + jugador.getNombre() + ":::\n");
+			System.out.println("Presiona enter para lanzar los dados...");
+			sc.nextLine();
+			
+			//metodo de lanzar los dados
+			jugador.lanzarDados();
+			
+			//verificar la casilla donde car el jugador
+			int codigo = tablero.obtenerCasilla(jugador.getPosicion());
+			
+			/*
+			 *  Leyenda de codigo:
+			 *  
+			 *  1 -> Propiedad que se puede comprar
+			 *  2 -> Propiedad con duenyo
+			 *  3 -> Tomar carta suerte
+			 *  4 -> Tomar carta comunidad
+			 *  5 -> Casilla especial
+			 * */
+			
+			 if(codigo == 1) //Puede comprar la propiedad
+			 {
+				 Propiedad propiedad = (Propiedad) tablero.getCasillas()[jugador.getPosicion()];
+				 
+				 if(jugador.getDinero() >= propiedad.getPrecio()) //la compra
+				 {
+					 //Comprando la propiedad
+					 jugador.setDinero(jugador.getDinero() - propiedad.getPrecio());
+					 propiedad.setDuenyo(jugador);
+					 tablero.getCasillas()[jugador.getPosicion()] = propiedad;
+					 
+					 System.out.println("\nEl jugador " + jugador.getNombre() +  " compra la propiedad " + propiedad.getNombre() + "\n");
+				 }
+				 else  //no tiene suficiente dinero
+				 {
+					 System.out.println("\nEl jugador " + jugador.getNombre() +  " no tiene para comprar la propiedad " + propiedad.getNombre() + "\n");
+				 }
+			 }
+			 else if(codigo == 2)
+			 {
+				 Propiedad propiedad = (Propiedad) tablero.getCasillas()[jugador.getPosicion()];
+				 
+				 //verificamos el tipo de propiedad
+				 if(propiedad instanceof Calle)
+				 {
+					 Calle calle = (Calle) propiedad;
+					 int cobro = 0;
+					 
+					 switch(calle.getEstado())
+					 {
+						 case 0:
+							 cobro = calle.getAlquiler();
+						 case 1:
+							 cobro = calle.getAlquiler1Casa();
+						 case 2:
+							 cobro = calle.getAlquiler2Casa();
+						 case 3:
+							 cobro = calle.getAlquiler3Casa();
+						 case 4:
+							 cobro = calle.getAlquiler4Casa();
+						 case 5:
+							 cobro = calle.getAlquilerHotel();
+					 }
+					 
+					 //actualizamos montos de los jugadores
+					 jugador.setDinero(jugador.getDinero() - cobro);
+					 Jugador duenyo = propiedad.getDuenyo();
+					 
+					 //recorrer lista de jugadores y actualizar al que tenga el mismo nombre
+					 
+					 //AQUI - Verificar la posicion del jugador al moverse con los dados
+					 
+				 }
+			 }
+			
+			//cambia turno
+			if((turno + 1) < jugadores.size())
+				turno++;
+			else
+				turno = 0;
+		}
+		
+		//buscar ganador
+		String ganador = "";
+		for(int i = 0; i < jugadores.size(); i++)
+			if(jugadores.get(i).getDinero() >= 0)
+				ganador = jugadores.get(i).getNombre();
+		
+		System.out.println("\n\n:::FIN DEL JUEGO:::\n\n");
+		System.out.println("\n\n:::GANADOR:::\n\n");
+		System.out.println("\n\n:::" + ganador + ":::\n\n");
+	}
+
+	private int cantidadEnJuego() 
+	{
+		int cantidad = 0;
+		
+		for(int i = 0; i < jugadores.size(); i++)
+			if(jugadores.get(i).getDinero() >= 0)
+				cantidad++;
+		
+		return cantidad;
 	}
 
 	/**
