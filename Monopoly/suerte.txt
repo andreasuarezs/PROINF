@@ -1,0 +1,15 @@
+1-Mueve a la casilla de salida
+2-Mueve hasta la ultima propiedad del tablero
+3-Mueve hasta la primera propiedad del tablero
+4-Mueve hasta la casilla de servicio publico mas proxima, si tiene propietario paga como si hubieras sacado un 10 en la tirada. Si esta libre puedes adquirirla
+5-Mueve hasta la estacion mas proxima, si tiene propietario pagale el alquiler. Si esta libre puedes adquirirla
+6-El banco paga un dividendo de 50
+7-Queda libre de la carcel, esta carta se puede usar cuando se crea oportuno. No se puede vender
+8-Retrocede 3 casillas
+9-Ve a la carcel, sin cobrar si se pasa por la casilla de salida
+10-Haz reparaciones en tus propiedades, 25 por casa y 100 por hotel
+11-Paga impuestos 15
+12-Ve a la primera estacion del tablero
+13-Cada jugador te paga 50
+14-Dividendos, ganas 150
+15-Ganas una competicion de crucigramas ganas 100

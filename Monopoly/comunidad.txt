@@ -1,0 +1,15 @@
+1-Mueve a la casilla de salida
+2-Error del banco ganas 200
+3-Pagas al dentista 50
+4-Ganas 50 de dividendos
+5-Queda libre de la carcel
+6-Ve a la carcel
+7-Gran estreno en la opera, cada jugador te paga 50
+8-Dividendos ganas 100
+9-Devolucion de impuestos ganas 20
+10-Feliz cumpleanos, ganas 10 de cada jugador
+11-Primer premio en la loteria ganas 100
+12-Multa de velocidad pagas 100
+13-Matricula escolar pagas 150
+14-Reparaciones 40 por casa y 115 por hotel
+15-Ganas el segundo premio en un concurso de disfraces ganas 10
